@@ -167,14 +167,16 @@ if ($selected_appt) {
 <body>
 
   <!-- Top Static Header -->
-  <header class="navbar navbar-expand-lg navbar-dark bg-dark py-3 px-4 border-bottom border-secondary">
+  <header class="navbar navbar-expand-lg navbar-light py-3 px-4">
     <div class="container-fluid d-flex justify-content-between align-items-center">
       <div class="d-flex align-items-center gap-2">
-        <div class="display-logo text-white fs-4">GOSHEN DENTAL</div>
-        <span class="badge bg-indigo text-white px-2 py-1 fs-xs" style="background-color: var(--primary-indigo)">CLINICAL</span>
+        <div class="display-logo fs-4">GOSHEN DENTAL</div>
+        <span class="badge text-white px-2 py-1" style="background-color: var(--primary-indigo); font-size: 0.68rem; letter-spacing: 0.05em; font-weight: 600;">CLINICAL</span>
       </div>
       <div>
-        <span class="badge bg-success">● Staff Node Connected</span>
+        <span class="badge rounded-pill bg-light text-success border border-success-subtle px-3 py-1.5 d-flex align-items-center gap-2 font-semibold" style="font-size: 0.75rem;">
+          <span class="ai-pulse-indicator"></span> Staff Node Active
+        </span>
       </div>
     </div>
   </header>

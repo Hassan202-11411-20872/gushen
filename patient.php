@@ -192,14 +192,16 @@ if (!empty($checkin_phone)) {
 <body>
 
   <!-- Top Static Header -->
-  <header class="navbar navbar-expand-lg navbar-dark bg-dark py-3 px-4 border-bottom border-secondary">
+  <header class="navbar navbar-expand-lg navbar-light py-3 px-4">
     <div class="container-fluid d-flex justify-content-between align-items-center">
       <div class="d-flex align-items-center gap-2">
-        <div class="display-logo text-white fs-4">GOSHEN DENTAL</div>
-        <span class="badge text-white px-2 py-1 fs-xs" style="background-color: var(--primary-indigo)">GUEST CENTER</span>
+        <div class="display-logo fs-4">GOSHEN DENTAL</div>
+        <span class="badge text-white px-2 py-1" style="background-color: var(--primary-indigo); font-size: 0.68rem; letter-spacing: 0.05em; font-weight: 600;">GUEST CENTER</span>
       </div>
       <div>
-        <span class="badge bg-success">● Encryption Standard: Active</span>
+        <span class="badge rounded-pill bg-light text-success border border-success-subtle px-3 py-1.5 d-flex align-items-center gap-2 font-semibold" style="font-size: 0.75rem;">
+          <span class="ai-pulse-indicator"></span> Secure Client Node
+        </span>
       </div>
     </div>
   </header>
@@ -445,28 +447,138 @@ if (!empty($checkin_phone)) {
     </div>
   </footer>
 
+  <!-- High-Fidelity Simulated USSD Terminal Modal Portal -->
+  <div id="momo_sim_modal" class="d-none" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(5px); z-index: 2000; display: flex; align-items: center; justify-content: center;">
+    <div style="background: #1e293b; width: 340px; border-radius: 36px; padding: 24px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); border: 4px solid #475569; position: relative;">
+      
+      <!-- Top Speaker Notch -->
+      <div style="width: 60px; height: 12px; background: #475569; border-radius: 6px; margin: 0 auto 20px auto;"></div>
+      
+      <!-- Screen Area -->
+      <div style="background: #0f172a; border-radius: 20px; padding: 20px; color: #38bdf8; font-family: 'JetBrains Mono', monospace; min-height: 380px; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid rgba(255, 255, 255, 0.1);">
+        
+        <!-- Header -->
+        <div style="display: flex; justify-content: space-between; align-items: center; font-size: 11px; border-bottom: 1px solid rgba(56, 189, 248, 0.2); padding-bottom: 8px;">
+          <span id="sim_network_title">SECURE CONNECTION</span>
+          <span style="color: #4ade80;">● 5G LTE</span>
+        </div>
+        
+        <!-- Interactive Body -->
+        <div id="sim_step_1" class="my-auto py-3">
+          <div class="text-center mb-3">
+            <div class="spinner-border text-info" role="status" style="width: 2rem; height: 2rem;"></div>
+          </div>
+          <div class="text-center" style="font-size: 0.82rem; line-height: 1.5; color: #94a3b8;">
+            Initiating secure MoMo channel push payload to wallet...
+          </div>
+        </div>
+
+        <div id="sim_step_2" class="my-auto py-3 d-none">
+          <div style="font-size: 0.8rem; color: #e2e8f0; margin-bottom: 15px; line-height: 1.4;">
+            <strong style="color: #38bdf8;">[GOSHEN DENTAL]</strong><br>
+            Authorize debit of <span id="sim_amount_text" style="color: #f59e0b; font-weight: bold;">UGX 0</span> on wallet <span id="sim_phone_text" style="color: #10b981;">07xx</span>.
+          </div>
+          <div style="margin-bottom: 15px;">
+            <label style="font-size: 10px; color: #94a3b8; display: block; margin-bottom: 5px;">ENTER SECURE 4-DIGIT PIN:</label>
+            <input type="password" id="sim_pin_input" maxlength="4" style="width: 100%; background: #1e293b; border: 1px solid rgba(56, 189, 248, 0.5); border-radius: 6px; padding: 10px; text-align: center; color: #fff; font-size: 1.2rem; letter-spacing: 5px; outline: none;" placeholder="••••">
+            <div style="font-size: 9px; color: #64748b; margin-top: 5px;" class="text-center">Demo Quick Code: 4455</div>
+          </div>
+          <button type="button" onclick="verifySimPin()" class="btn btn-primary-custom w-100 py-2 btn-sm" style="background: #38bdf8; color: #000; font-family: 'Space Grotesk', sans-serif;">Confirm PIN</button>
+        </div>
+
+        <div id="sim_step_3" class="my-auto py-3 d-none">
+          <div class="text-center mb-3">
+            <div class="spinner-grow text-success" role="status" style="width: 2.2rem; height: 2.2rem;"></div>
+          </div>
+          <div class="text-center" style="font-size: 0.82rem; line-height: 1.5; color: #4ade80;">
+            PIN Authenticated!<br>
+            Broadcasting ledger node consensus transaction...
+          </div>
+        </div>
+
+        <div id="sim_step_4" class="my-auto py-3 d-none text-center">
+          <div style="font-size: 2.5rem; color: #4ade80; margin-bottom: 10px;">✓</div>
+          <div style="font-size: 0.9rem; color: #fff; font-weight: bold; margin-bottom: 5px;">Transaction Succeeded!</div>
+          <div style="font-size: 0.75rem; color: #94a3b8; line-height: 1.4;">
+            Ledger sync completed.<br>Press OK to update Goshen medical files.
+          </div>
+          <button type="button" id="sim_final_btn" class="btn btn-success w-100 py-2 mt-4" style="font-family: 'Space Grotesk', sans-serif; background-color: var(--coral-emerald); border: none;">OK</button>
+        </div>
+
+        <!-- Footer Indicator -->
+        <div style="text-align: center; font-size: 8px; color: #475569; border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 8px;">
+          GOSHEN BANKING SYSTEMS NODE v4.2.1
+        </div>
+      </div>
+      
+      <!-- Home Button bar -->
+      <div style="width: 40px; height: 40px; border: 2px solid #475569; border-radius: 50%; margin: 15px auto 0 auto; cursor: pointer;" onclick="closeSimModal()"></div>
+    </div>
+  </div>
+
   <!-- Simulated USSD Checkout script -->
   <script>
+    let currentPendingForm = null;
+
     function alertUSSDSim(form) {
+      currentPendingForm = form;
       const amt = Number(form.momo_amount.value);
       const phone = form.momo_phone.value;
       const channel = form.momo_channel.value;
       
-      const formattedAmt = "UGX " + amt.toLocaleString();
+      // Update modal text fields
+      document.getElementById('sim_network_title').innerText = channel.toUpperCase() + " NETWORK NODE";
+      document.getElementById('sim_amount_text').innerText = "UGX " + amt.toLocaleString();
+      document.getElementById('sim_phone_text').innerText = phone;
+      document.getElementById('sim_pin_input').value = "";
       
-      alert(
-        "⚡ [Simulated Secure MoMo Connection] ⚡\n\n" +
-        "Sending " + channel + " API push notification to mobile wallet owner: " + phone + "\n" +
-        "Transaction payload value: " + formattedAmt + "\n\n" +
-        "⚙ PLEASE SIMULATE CUSTOMER RESPONSE: Type '4455' on your simulated phone prompt to confirm security PIN clearance..."
-      );
+      // Reset steps
+      document.getElementById('sim_step_1').classList.remove('d-none');
+      document.getElementById('sim_step_2').classList.add('d-none');
+      document.getElementById('sim_step_3').classList.add('d-none');
+      document.getElementById('sim_step_4').classList.add('d-none');
       
-      alert(
-        "✓ pin success! Transaction validated and cleared by MTN/Airtel gateway ledger node.\n" +
-        "Press OK to apply installment payment down and update active clinical databases."
-      );
+      // Show modal
+      document.getElementById('momo_sim_modal').style.display = 'flex';
+      document.getElementById('momo_sim_modal').classList.remove('d-none');
       
-      return true;
+      // Advance to step 2 after 1.5s
+      setTimeout(() => {
+        document.getElementById('sim_step_1').classList.add('d-none');
+        document.getElementById('sim_step_2').classList.remove('d-none');
+        document.getElementById('sim_pin_input').focus();
+      }, 1500);
+      
+      return false; // Prevent immediate standard submit
+    }
+
+    function verifySimPin() {
+      const pin = document.getElementById('sim_pin_input').value;
+      if (!pin) {
+        alert("Please enter your PIN code.");
+        return;
+      }
+      
+      document.getElementById('sim_step_2').classList.add('d-none');
+      document.getElementById('sim_step_3').classList.remove('d-none');
+      
+      // Advance to step 4 after 1.8s
+      setTimeout(() => {
+        document.getElementById('sim_step_3').classList.add('d-none');
+        document.getElementById('sim_step_4').classList.remove('d-none');
+        
+        // Setup final submission callback
+        document.getElementById('sim_final_btn').onclick = function() {
+          if (currentPendingForm) {
+            currentPendingForm.submit();
+          }
+        };
+      }, 1800);
+    }
+    
+    function closeSimModal() {
+      document.getElementById('momo_sim_modal').classList.add('d-none');
+      document.getElementById('momo_sim_modal').style.display = 'none';
     }
   </script>
 

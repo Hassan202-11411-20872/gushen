@@ -7,21 +7,18 @@
 // Configure Response Headers for API use
 session_start();
 
-// Database Credentials setup (Standard default configurations, override as needed)
-$db_host = '127.0.0.1';
-$db_name = 'goshen_dental';
-$db_user = 'root';
-$db_pass = ''; // Leave blank for default local environments like XAMPP/WAMP
+// Include external configuration settings
+require_once __DIR__ . '/config.php';
 
 try {
-    $dsn = "mysql:host={$db_host};dbname={$db_name};charset=utf8mb4";
+    $dsn = "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=utf8mb4";
     $options = [
         PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
         PDO::ATTR_EMULATE_PREPARES   => false,
     ];
     
-    $pdo = new PDO($dsn, $db_user, $db_pass, $options);
+    $pdo = new PDO($dsn, DB_USER, DB_PASS, $options);
 } catch (PDOException $e) {
     // If database connection fails, define fallback mock storage sessions to keep the application 
     // 100% interactive and operational even before the user imports database.sql to MySQL!

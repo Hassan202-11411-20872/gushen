@@ -1,0 +1,388 @@
+/**
+ * Goshen Dental Care - High-End Premium Executive UI Stylesheet
+ * Elegant modern theme built precisely on top of Bootstrap 5.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+:root {
+  --primary-indigo: #4f46e5;
+  --primary-indigo-light: #e0e7ff;
+  --primary-indigo-dark: #3730a3;
+  --glow-indigo: rgba(79, 70, 229, 0.08);
+  
+  --coral-emerald: #10b981;
+  --coral-emerald-light: #ecfdf5;
+  --coral-emerald-dark: #065f46;
+  
+  --amber-gold: #f59e0b;
+  --amber-gold-light: #fef3c7;
+  --amber-gold-dark: #92400e;
+
+  --danger-crimson: #ef4444;
+  --danger-crimson-light: #fef2f2;
+  --danger-crimson-dark: #991b1b;
+  
+  --dark-indigo: #0f172a; /* Sophisticated deep slate */
+  --pale-slate: #f4f6f9; /* Clean medical studio grey */
+  --deep-charcoal: #1e293b;
+  --border-line: #e2e8f0;
+  
+  --custom-font: 'Inter', system-ui, sans-serif;
+  --display-font: 'Space Grotesk', sans-serif;
+  --mono-font: 'JetBrains Mono', SFMono-Regular, monospace;
+  
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+}
+
+body {
+  font-family: var(--custom-font);
+  background-color: var(--pale-slate);
+  color: var(--deep-charcoal);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Elegant Headers and Grid Structure */
+h1, h2, h3, h4, h5, h6, .display-logo {
+  font-family: var(--display-font);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--dark-indigo);
+}
+
+header.navbar {
+  background: white !important;
+  border-bottom: 1px solid var(--border-line) !important;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.03);
+}
+
+.display-logo {
+  font-size: 1.35rem;
+  letter-spacing: -0.04em;
+  background: linear-gradient(135deg, var(--primary-indigo), #3b82f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+}
+
+/* Navigation Sidebar System */
+.bg-indigo-sidebar {
+  background: #ffffff;
+  border-right: 1px solid var(--border-line);
+  padding: 30px 24px !important;
+}
+
+.sidebar-title {
+  font-family: var(--display-font);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #64748b;
+}
+
+.nav-link-custom {
+  color: #475569;
+  font-size: 0.88rem;
+  font-weight: 500;
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  background: transparent;
+}
+
+.nav-link-custom:hover {
+  background-color: var(--pale-slate);
+  color: var(--dark-indigo);
+  transform: translateX(2px);
+}
+
+.nav-link-custom.active {
+  background-color: var(--primary-indigo);
+  color: #ffffff;
+  box-shadow: 0 8px 16px -4px rgba(79, 70, 229, 0.25);
+  font-weight: 600;
+}
+
+/* Vault Widget */
+.vault-widget {
+  background: linear-gradient(145deg, #1e293b, #0f172a);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.15);
+}
+
+/* Metrics and Cards */
+.metric-card {
+  background: #ffffff;
+  border: 1px solid var(--border-line);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.02), 0 1px 2px -1px rgba(0, 0, 0, 0.02);
+}
+
+.metric-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px -6px rgba(79, 70, 229, 0.08), 0 4px 10px -4px rgba(79, 70, 229, 0.04);
+  border-color: rgba(79, 70, 229, 0.3);
+}
+
+.metric-label {
+  font-family: var(--display-font);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #64748b;
+}
+
+.card-title-fancy {
+  font-family: var(--display-font);
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--dark-indigo);
+}
+
+/* Tables Custom Reductions */
+.clinical-table-container {
+  background: #ffffff;
+  border: 1px solid var(--border-line);
+  border-radius: var(--radius-md);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.01);
+  overflow: hidden;
+}
+
+.clinical-table {
+  margin-bottom: 0px !important;
+}
+
+.clinical-table th {
+  background-color: var(--pale-slate);
+  font-family: var(--display-font);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  letter-spacing: 0.07em;
+  color: #475569;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-line);
+}
+
+.clinical-table td {
+  padding: 18px 20px;
+  font-size: 0.84rem;
+  vertical-align: middle;
+  border-bottom: 1px solid #f1f5f9;
+  color: #334155;
+}
+
+.clinical-table tr:last-child td {
+  border-bottom: 0px !important;
+}
+
+.clinical-table tr:hover td {
+  background-color: rgba(79, 70, 229, 0.015);
+}
+
+/* Precise Soft Badges */
+.status-badge {
+  font-family: var(--mono-font);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  padding: 6px 12px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.status-paid {
+  background-color: var(--coral-emerald-light);
+  color: var(--coral-emerald-dark);
+}
+
+.status-partial {
+  background-color: var(--amber-gold-light);
+  color: var(--amber-gold-dark);
+}
+
+.status-unpaid {
+  background-color: #f1f5f9;
+  color: #475569;
+}
+
+/* Luxurious Form Inputs */
+.form-control, .form-select {
+  border: 1px solid var(--border-line);
+  border-radius: var(--radius-sm);
+  padding: 11px 14px;
+  font-size: 0.88rem;
+  background-color: #fdfdfd;
+  transition: all 0.18s ease-in-out;
+  color: var(--deep-charcoal);
+}
+
+.form-control:focus, .form-select:focus {
+  background-color: #ffffff;
+  border-color: var(--primary-indigo);
+  box-shadow: 0 0 0 4px var(--glow-indigo);
+  outline: none;
+}
+
+.form-label {
+  font-family: var(--display-font);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #475569;
+  margin-bottom: 8px;
+}
+
+/* Beautiful Interactive Buttons */
+.btn-primary-custom {
+  background: linear-gradient(135deg, var(--primary-indigo), #5a52ff);
+  color: #ffffff;
+  font-family: var(--display-font);
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: var(--radius-sm);
+  border: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px -2px rgba(79, 70, 229, 0.2), 0 2px 4px -1px rgba(79, 70, 229, 0.1);
+}
+
+.btn-primary-custom:hover {
+  background: linear-gradient(135deg, #4338ca, var(--primary-indigo));
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px -4px rgba(79, 70, 229, 0.3), 0 4px 8px -2px rgba(79, 70, 229, 0.15);
+}
+
+.btn-primary-custom:active {
+  transform: translateY(0px);
+}
+
+.btn-dark {
+  background-color: var(--dark-indigo);
+  border: none;
+  font-family: var(--display-font);
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s;
+}
+
+.btn-dark:hover {
+  background-color: #1e293b;
+  transform: translateY(-1px);
+}
+
+/* Beautiful Alert Boxes */
+.alert {
+  border-radius: var(--radius-md) !important;
+  font-size: 0.88rem;
+  padding: 16px 20px !important;
+}
+
+.alert-success {
+  background-color: var(--coral-emerald-light) !important;
+  border: 1px solid rgba(16, 185, 129, 0.15) !important;
+  color: var(--coral-emerald-dark) !important;
+}
+
+.alert-info {
+  background-color: #eff6ff !important;
+  border: 1px solid rgba(59, 130, 246, 0.15) !important;
+  color: #1e40af !important;
+}
+
+/* Mobile Money Simulator Interface Box */
+.momo-pay-box {
+  background: linear-gradient(145deg, #0f172a, #1e1b4b);
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  border-radius: var(--radius-md);
+  padding: 26px;
+  color: #f1f5f9;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 12px 30px -5px rgba(15, 23, 42, 0.22);
+}
+
+.momo-pay-box::before {
+  content: '';
+  position: absolute;
+  top: -50px; right: -50px;
+  width: 150px; height: 150px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.momo-title {
+  font-family: var(--display-font);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Beautiful clinical treatment step tracking */
+.treatment-badge {
+  background: #f1f5f9;
+  border: 1px solid var(--border-line);
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: #334155;
+}
+
+/* Pulse animation */
+.ai-pulse-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--coral-emerald);
+  display: inline-block;
+  box-shadow: 0 0 10px var(--coral-emerald);
+  animation: pulse-glow 2s infinite ease-in-out;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    transform: scale(0.9);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+    box-shadow: 0 0 12px 4px var(--coral-emerald);
+  }
+}
+
+/* Utility layout improvements */
+.last-border-0:last-child {
+  border-bottom: 0px !important;
+}
+
+.transition {
+  transition: all 0.2s ease-in-out;
+}
+
+.transition:hover {
+  transform: translateY(-2px);
+}

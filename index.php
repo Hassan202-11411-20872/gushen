@@ -146,15 +146,17 @@ $net_operating_profit = $total_revenue - $total_expenses;
 <body>
 
   <!-- Top Static Header -->
-  <header class="navbar navbar-expand-lg navbar-dark bg-dark py-3 px-4 border-bottom border-secondary">
+  <header class="navbar navbar-expand-lg navbar-light py-3 px-4">
     <div class="container-fluid d-flex justify-content-between align-items-center">
       <div class="d-flex align-items-center gap-2">
-        <div class="display-logo text-white fs-4">GOSHEN DENTAL</div>
-        <span class="badge bg-indigo text-white px-2 py-1 fs-xs" style="background-color: var(--primary-indigo)">KAMPALA</span>
+        <div class="display-logo fs-4">GOSHEN DENTAL</div>
+        <span class="badge text-white px-2 py-1" style="background-color: var(--primary-indigo); font-size: 0.68rem; letter-spacing: 0.05em; font-weight: 600;">KAMPALA</span>
       </div>
-      <div>
-        <span class="text-white-50 fs-xs me-3">Current Mode: <strong>Standalone PHP & MySQL System</strong></span>
-        <span class="badge bg-success">● Status Online</span>
+      <div class="d-flex align-items-center gap-3">
+        <span class="text-muted d-none d-md-inline" style="font-size: 0.78rem;">Systems Status: <strong class="text-dark">Online Node</strong></span>
+        <span class="badge rounded-pill bg-light text-success border border-success-subtle px-3 py-1.5 d-flex align-items-center gap-2 font-semibold" style="font-size: 0.75rem;">
+          <span class="ai-pulse-indicator"></span> Standalone Active Memory
+        </span>
       </div>
     </div>
   </header>
@@ -181,10 +183,10 @@ $net_operating_profit = $total_revenue - $total_expenses;
         </div>
 
         <div class="mt-auto">
-          <div class="p-3 bg-white/5 rounded-3 border border-white/10">
-            <div class="text-[10px] text-white-50 uppercase tracking-widest font-mono mb-1">Clinic Vault</div>
+          <div class="vault-widget p-3 text-white">
+            <div class="text-[10px] text-white-50 uppercase tracking-widest font-mono mb-1" style="font-size: 10px; opacity: 0.7;">Clinic Vault</div>
             <div class="font-bold text-white fs-6 font-mono"><?= formatUGX($net_operating_profit) ?></div>
-            <div class="text-[10px] text-emerald-400 mt-1">Direct Profit Margins</div>
+            <div class="text-[10px] text-emerald-400 mt-1" style="font-size: 10px;">Direct Profit Margins</div>
           </div>
         </div>
       </nav>

@@ -1,0 +1,6 @@
+{
+  "name": "Goshen Dental Care",
+  "description": "Premium Clinical & Financial Intelligence Platform for Goshen Dental Care, Uganda. Features include patient appointment booking, customizable installment payment tracking in UGX, administrative treatment planning, clinic inventory levels, and a CEO metrics dashboard.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

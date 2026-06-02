@@ -1,0 +1,237 @@
+/**
+ * Goshen Dental Care - Elegant "Geometric Balance" Modern Stylesheet
+ * Custom CSS Overrides built on top of Bootstrap 5.
+ */
+
+:root {
+  --primary-indigo: #4f46e5;
+  --dark-indigo: #1e1b4b;
+  --coral-emerald: #10b981;
+  --pale-slate: #f8fafc;
+  --deep-charcoal: #0f172a;
+  --border-glow: rgba(99, 102, 241, 0.15);
+  --custom-font: 'Inter', system-ui, sans-serif;
+  --display-font: 'Space Grotesk', sans-serif;
+  --mono-font: 'JetBrains Mono', SFMono-Regular, monospace;
+}
+
+body {
+  font-family: var(--custom-font);
+  background-color: var(--pale-slate);
+  color: var(--deep-charcoal);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1, h2, h3, h4, h5, .display-logo {
+  font-family: var(--display-font);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.mono-text {
+  font-family: var(--mono-font) !important;
+  font-size: 0.85rem;
+}
+
+/* Premium Navigation Sidebar */
+.bg-indigo-sidebar {
+  background-color: var(--dark-indigo);
+  color: #ffffff;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sidebar-title {
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #818cf8;
+}
+
+.nav-link-custom {
+  color: #c7d2fe;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 8px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+}
+
+.nav-link-custom:hover, .nav-link-custom.active {
+  background-color: rgba(99, 102, 241, 0.22);
+  color: #ffffff;
+}
+
+/* Premium Medical Metrics */
+.metric-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 24px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.01);
+}
+
+.metric-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.04), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+  border-color: var(--primary-indigo);
+}
+
+.metric-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #94a3b8;
+}
+
+/* Goshen Custom Table & Grid */
+.clinical-table {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.clinical-table th {
+  background-color: #f1f5f9;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  color: #64748b;
+  padding: 14px 20px;
+  border: 0;
+}
+
+.clinical-table td {
+  padding: 16px 20px;
+  font-size: 0.82rem;
+  vertical-align: middle;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.clinical-table tr:hover td {
+  background-color: rgba(99, 102, 241, 0.02);
+}
+
+/* MoMo and Status Badge Badges */
+.status-badge {
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 5px 10px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.status-paid {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: #065f46;
+}
+
+.status-partial {
+  background-color: rgba(245, 158, 11, 0.1);
+  color: #92400e;
+}
+
+.status-unpaid {
+  background-color: rgba(148, 163, 184, 0.1);
+  color: #475569;
+}
+
+/* Custom interactive Buttons */
+.btn-primary-custom {
+  background-color: var(--primary-indigo);
+  color: #ffffff;
+  font-weight: 600;
+  padding: 8px 18px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  transition: all 0.2s;
+  font-size: 0.85rem;
+}
+
+.btn-primary-custom:hover {
+  background-color: #4338ca;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.btn-sub-card {
+  background-color: #f1f5f9;
+  color: #334155;
+  border: 1px solid #e2e8f0;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.btn-sub-card:hover {
+  background-color: #e2e8f0;
+  color: #0f172a;
+}
+
+/* MTN & Airtel MoMo Gateway Simulator Box */
+.momo-pay-box {
+  background: radial-gradient(circle at 100% 100%, #1e1b4b 0%, #0c0a09 100%);
+  border: 1px solid rgba(99, 102, 241, 0.18);
+  border-radius: 20px;
+  padding: 24px;
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
+.momo-pay-box::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 150px; hieght: 150px;
+  background: rgba(16, 185, 129, 0.04);
+  border-radius: 50%;
+  filter: blur(40px);
+}
+
+/* AI Diagnostics panel elements */
+.ai-planner-panel {
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  color: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.ai-pulse-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--coral-emerald);
+  display: inline-block;
+  animation: pulse-glow 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    transform: scale(0.9);
+    filter: opacity(0.8);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+  }
+  50% {
+    transform: scale(1.2);
+    filter: opacity(1);
+    box-shadow: 0 0 8px 4px rgba(16, 185, 129, 0.6);
+  }
+}

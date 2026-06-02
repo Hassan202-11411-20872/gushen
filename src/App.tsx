@@ -15,13 +15,15 @@ import {
   Calendar, 
   ShieldAlert, 
   Info, 
-  Briefcase 
+  Briefcase,
+  Server
 } from "lucide-react";
 
 import DentalLogo from "./components/DentalLogo";
 import PatientPortal from "./components/PatientPortal";
 import StaffPortal from "./components/StaffPortal";
 import AdminPortal from "./components/AdminPortal";
+import PhpStandalonePortal from "./components/PhpStandalonePortal";
 
 import { 
   INITIAL_APPOINTMENTS, 
@@ -61,7 +63,7 @@ export default function App() {
   ]);
 
   // CEO Role selector state
-  const [activePortal, setActivePortal] = useState<"patient" | "staff" | "admin">("admin");
+  const [activePortal, setActivePortal] = useState<"patient" | "staff" | "admin" | "php_export">("admin");
 
   // Global overlay alert popups state for visible proof of notifications
   const [alertToast, setAlertToast] = useState<{
@@ -251,6 +253,18 @@ export default function App() {
             <HeartHandshake className="w-3.5 h-3.5" />
             Patient / Guest Portal
           </button>
+
+          <button
+            onClick={() => setActivePortal("php_export")}
+            className={`px-3.5 py-1.5 text-xs font-bold rounded-lg cursor-pointer transition-all flex items-center gap-1 ${
+              activePortal === "php_export"
+                ? "bg-emerald-600 text-white shadow font-bold"
+                : "text-slate-500 hover:text-slate-800 hover:bg-slate-200/50"
+            }`}
+          >
+            <Server className="w-3.5 h-3.5 text-emerald-400" />
+            PHP Standalone App Files
+          </button>
         </div>
       </header>
 
@@ -373,6 +387,18 @@ export default function App() {
                 onAddInstallment={handleAddInstallment}
                 triggerNotification={handleTriggerNotification}
               />
+            </motion.div>
+          )}
+
+          {activePortal === "php_export" && (
+            <motion.div
+              key="php_export_view"
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.25 }}
+            >
+              <PhpStandalonePortal />
             </motion.div>
           )}
         </AnimatePresence>

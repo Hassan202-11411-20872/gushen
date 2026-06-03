@@ -145,18 +145,72 @@ $net_operating_profit = $total_revenue - $total_expenses;
 </head>
 <body>
 
-  <!-- Top Static Header -->
-  <header class="navbar navbar-expand-lg navbar-light py-3 px-4">
+  <!-- Top Doctris-Style Header -->
+  <header class="navbar navbar-expand-lg navbar-light py-2 px-4 sticky-top">
     <div class="container-fluid d-flex justify-content-between align-items-center">
-      <div class="d-flex align-items-center gap-2">
-        <div class="display-logo fs-4">GOSHEN DENTAL</div>
-        <span class="badge text-white px-2 py-1" style="background-color: var(--primary-indigo); font-size: 0.68rem; letter-spacing: 0.05em; font-weight: 600;">KAMPALA</span>
-      </div>
       <div class="d-flex align-items-center gap-3">
-        <span class="text-muted d-none d-md-inline" style="font-size: 0.78rem;">Systems Status: <strong class="text-dark">Online Node</strong></span>
-        <span class="badge rounded-pill bg-light text-success border border-success-subtle px-3 py-1.5 d-flex align-items-center gap-2 font-semibold" style="font-size: 0.75rem;">
-          <span class="ai-pulse-indicator"></span> Standalone Active Memory
+        <div class="d-flex align-items-center gap-2">
+          <div class="display-logo fs-4">GOSHEN DENTAL</div>
+          <span class="badge text-white px-2 py-1" style="background-color: var(--primary-indigo); font-size: 0.68rem; letter-spacing: 0.05em; font-weight: 600;">KAMPALA</span>
+        </div>
+        
+        <!-- Doctris Search bar -->
+        <div class="doctris-search-container d-none d-lg-block ms-4">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="doctris-search-icon"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <input type="text" class="doctris-search-bar" placeholder="Search patients, procedures...">
+        </div>
+      </div>
+
+      <div class="d-flex align-items-center gap-3">
+        <!-- Location badge -->
+        <span class="country-badge-doctris d-none d-md-inline-flex align-items-center gap-1.5">
+          <span>🇺🇬</span> Kampala HQ
         </span>
+
+        <!-- Notifications Bell dropdown container -->
+        <div class="dropdown">
+          <button class="btn border-0 p-2 position-relative" type="button" id="bellDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="border-radius: 50%; width: 40px; height: 40px; background-color: #f1f5f9;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-slate-600"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+            <span class="position-absolute top-1 start-7 translate-middle badge rounded-pill bg-danger border border-white" style="font-size: 0.6rem; padding: 3px 5px;">
+              <?= count($notifications_data) ?>
+            </span>
+          </button>
+          
+          <ul class="dropdown-menu dropdown-menu-end notifications-dropdown-menu p-0" aria-labelledby="bellDropdown">
+            <div class="p-3 border-bottom d-flex justify-content-between align-items-center bg-light" style="border-top-left-radius: var(--radius-md); border-top-right-radius: var(--radius-md);">
+              <span class="font-bold text-dark text-xs uppercase font-sans">Reminders SMS Ledger</span>
+              <span class="badge bg-indigo text-white font-mono" style="font-size: 9px;"><?= count($notifications_data) ?> Sent</span>
+            </div>
+            <div style="max-height: 280px; overflow-y: auto;">
+              <?php foreach (array_slice($notifications_data, 0, 5) as $notif): ?>
+                <li class="notification-item-doctris">
+                  <div class="d-flex align-items-start gap-2">
+                    <div class="patient-circle-avatar" style="background: linear-gradient(135deg, #a5b4fc, #6366f1); width: 28px; height: 28px; font-size: 0.7rem; flex-shrink: 0;">
+                      <?= strtoupper(substr($notif['patient_name'], 0, 2)) ?>
+                    </div>
+                    <div>
+                      <div class="font-semibold text-slate-800 text-xs" style="line-height: 1.2;"><?= htmlspecialchars($notif['subject']) ?></div>
+                      <p class="text-muted mb-0 font-sans mt-0.5" style="font-size: 10px;"><?= htmlspecialchars($notif['patient_name']) ?>: <?= htmlspecialchars($notif['content']) ?></p>
+                      <span class="text-[9px] text-slate-400 font-mono d-block mt-0.5" style="font-size: 9px;"><?= $notif['sent_at'] ?></span>
+                    </div>
+                  </div>
+                </li>
+              <?php endforeach; ?>
+            </div>
+            <div class="p-2 text-center border-top">
+              <a href="index.php" class="text-indigo text-xs font-semibold text-decoration-none">View Outbound Log</a>
+            </div>
+          </ul>
+        </div>
+
+        <!-- Doctor Mini Profile Pill -->
+        <div class="d-flex align-items-center gap-2 ps-2 border-start">
+          <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=150&q=80" alt="Dr. Kato Michael" style="width: 38px; height: 38px; border-radius: 50%; object-fit: cover; border: 2px solid var(--doctris-primary);">
+          <div class="d-none d-md-block text-start">
+            <div class="font-bold text-dark text-xs mb-0">Dr. Kato Michael</div>
+            <span class="text-muted block font-sans" style="font-size: 9.5px; line-height: 1;">Oral Director</span>
+          </div>
+        </div>
       </div>
     </div>
   </header>
@@ -167,26 +221,44 @@ $net_operating_profit = $total_revenue - $total_expenses;
       
       <!-- LEFT MODULE: Primary Navigation Panel -->
       <nav class="col-md-3 col-lg-2 bg-indigo-sidebar p-4 d-flex flex-column gap-4">
+        <!-- Doctris Doctor Profile Card Widget -->
+        <div class="doctris-doctor-card mb-2 text-center">
+          <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=150&q=80" alt="Dr. Kato Michael" class="doctris-doctor-img mb-3">
+          <h4 class="fs-6 font-bold text-white mb-1">Dr. Kato Michael</h4>
+          <span class="text-white-50 d-block font-sans" style="font-size: 11px;">Chief Dental Officer</span>
+          <div class="mt-2.5 d-flex align-items-center justify-content-center gap-1.5 font-semibold text-emerald-400 font-mono" style="font-size: 10px; opacity: 0.95;">
+            <span class="ai-pulse-indicator" style="width: 6px; height: 6px; background-color: #34d399; box-shadow: 0 0 8px #34d399;"></span> Active Duty
+          </div>
+        </div>
+
         <div>
-          <div class="sidebar-title mb-3">Operating Portals</div>
+          <div class="sidebar-title mb-3 text-muted">Operating Portals</div>
           <div class="d-flex flex-column gap-2">
             <a href="index.php" class="nav-link-custom active">
-              <span>Admin Director Dashboard</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sidebar-icon"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="10" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+              <span>CEO Administration Desk</span>
             </a>
             <a href="staff.php" class="nav-link-custom">
-              <span>Staff Clinician Terminal</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sidebar-icon"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              <span>Clinician Queue Station</span>
             </a>
             <a href="patient.php" class="nav-link-custom">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sidebar-icon"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
               <span>Client Booking Hub</span>
             </a>
           </div>
         </div>
 
         <div class="mt-auto">
-          <div class="vault-widget p-3 text-white">
-            <div class="text-[10px] text-white-50 uppercase tracking-widest font-mono mb-1" style="font-size: 10px; opacity: 0.7;">Clinic Vault</div>
-            <div class="font-bold text-white fs-6 font-mono"><?= formatUGX($net_operating_profit) ?></div>
-            <div class="text-[10px] text-emerald-400 mt-1" style="font-size: 10px;">Direct Profit Margins</div>
+          <div class="vault-widget p-4 text-white">
+            <div class="d-flex align-items-center gap-2 mb-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-400" style="color: #818cf8;"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <div class="uppercase tracking-widest font-mono text-white-50" style="font-size: 10px; opacity: 0.75; letter-spacing: 0.08em;">CLINIC VAULT</div>
+            </div>
+            <div class="font-bold text-white fs-5 font-mono"><?= formatUGX($net_operating_profit) ?></div>
+            <div class="text-[10px] text-emerald-400 mt-1 d-flex align-items-center gap-1.5" style="font-size: 10px;">
+              <span class="ai-pulse-indicator" style="width: 5px; height: 5px; background-color: #10b981; box-shadow: 0 0 6px #10b981;"></span> Direct Profit Margins
+            </div>
           </div>
         </div>
       </nav>
@@ -209,48 +281,103 @@ $net_operating_profit = $total_revenue - $total_expenses;
           </div>
         <?php endif; ?>
 
-        <!-- Layout Header Titles -->
-        <div class="d-flex justify-content-between align-items-center mb-5 flex-wrap gap-2">
-          <div>
-            <h1 class="text-dark">CEO Executive Administration</h1>
-            <p class="text-muted fs-xs">Financial statements, dental procedure catalogs, stocks reserve grids, and outbound email alerts.</p>
+        <!-- Doctris Elegant Welcome Hero Card -->
+        <div class="doctris-welcome-hero d-flex justify-content-between align-items-center mb-5 flex-wrap gap-4">
+          <div style="z-index: 2;">
+            <span class="doctris-welcome-badge mb-3 d-inline-block">Welcome back Executive Director</span>
+            <h1 class="text-dark fs-3 mb-2 font-bold" style="font-family: var(--display-font);">Good Day, Dr. Kato Michael!</h1>
+            <p class="text-muted fs-xs max-w-2xl mb-0" style="max-width: 600px;">
+              Goshen Orthodontics & Oral Surgery systems are active. Today you have active patient sessions on-deck. Your direct mobile money ledger feeds represent Kampala's top dental portfolio margins.
+            </p>
           </div>
-          <span class="badge bg-light text-dark border p-2 font-mono ms-auto"><?= date('l, d M Y') ?></span>
+          <div class="d-flex gap-2" style="z-index: 2;">
+            <a href="staff.php" class="btn btn-primary-custom d-flex align-items-center gap-2 py-2.5 px-4 font-bold" style="font-size: 0.82rem; border-radius: 30px;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              Go to Clinician Queue
+            </a>
+            <span class="badge bg-light text-slate-700 border p-3 d-flex align-items-center justify-content-center font-mono font-bold" style="border-radius: 30px; font-size: 0.76rem;"><?= date('l, d M Y') ?></span>
+          </div>
         </div>
 
         <!-- 4 Key Reporting Balanced KPI Cards -->
         <div class="row g-4 mb-5">
           <div class="col-sm-6 col-lg-3">
-            <div class="metric-card">
-              <div class="metric-label mb-2">Total Income Collected</div>
-              <div class="fs-4 font-bold font-mono text-indigo"><?= formatUGX($total_revenue) ?></div>
-              <div class="text-muted d-flex align-items-center gap-1 mt-1 font-sans font-xs">
-                <span>Direct dental inflow payments</span>
+            <div class="metric-card metric-primary">
+              <div class="d-flex align-items-center justify-content-between mb-2">
+                <div class="metric-label">Total Income Collected</div>
+                <div style="background-color: rgba(79, 70, 229, 0.08); padding: 8px; border-radius: 8px; color: var(--primary-indigo);">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                </div>
+              </div>
+              <div class="d-flex align-items-baseline gap-1">
+                <div class="fs-4 font-bold font-mono text-dark"><?= formatUGX($total_revenue) ?></div>
+              </div>
+              <div class="text-muted mt-2 font-sans d-flex align-items-center justify-content-between" style="font-size: 11px;">
+                <span>Direct dental payments</span>
+                <span class="trend-pill trend-up">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg> +18.4%
+                </span>
               </div>
             </div>
           </div>
           
           <div class="col-sm-6 col-lg-3">
-            <div class="metric-card">
-              <div class="metric-label mb-2">Outstanding Installments</div>
-              <div class="fs-4 font-bold font-mono text-warning text-amber-600"><?= formatUGX($total_due) ?></div>
-              <div class="text-muted mt-1 font-sans font-xs">Locked in active recovery tracking</div>
+            <div class="metric-card metric-warning">
+              <div class="d-flex align-items-center justify-content-between mb-2">
+                <div class="metric-label">Outstanding Installments</div>
+                <div style="background-color: rgba(245, 158, 11, 0.08); padding: 8px; border-radius: 8px; color: var(--amber-gold);">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/><rect width="20" height="12" x="2" y="6" rx="2"/><circle cx="12" cy="12" r="2"/></svg>
+                </div>
+              </div>
+              <div class="d-flex align-items-baseline gap-1">
+                <div class="fs-4 font-bold font-mono text-dark"><?= formatUGX($total_due) ?></div>
+              </div>
+              <div class="text-muted mt-2 font-sans d-flex align-items-center justify-content-between" style="font-size: 11px;">
+                <span>Active recovery tracking</span>
+                <span class="trend-pill trend-down">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"/><polyline points="16 17 22 17 22 11"/></svg> -2.5%
+                </span>
+              </div>
             </div>
           </div>
 
           <div class="col-sm-6 col-lg-3">
-            <div class="metric-card">
-              <div class="metric-label mb-2">Documented Expenses</div>
-              <div class="fs-4 font-bold font-mono text-danger"><?= formatUGX($total_expenses) ?></div>
-              <div class="text-muted mt-1 font-sans font-xs">Umeme electricity, facility rents & stocks</div>
+            <div class="metric-card metric-danger">
+              <div class="d-flex align-items-center justify-content-between mb-2">
+                <div class="metric-label">Documented Expenses</div>
+                <div style="background-color: rgba(239, 68, 110, 0.08); padding: 8px; border-radius: 8px; color: var(--danger-crimson);">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 16 4 4 4-4"/><path d="M7 20V4"/><path d="M21 8l-4-4-4 4"/><path d="M17 4v16"/></svg>
+                </div>
+              </div>
+              <div class="d-flex align-items-baseline gap-1">
+                <div class="fs-4 font-bold font-mono text-dark"><?= formatUGX($total_expenses) ?></div>
+              </div>
+              <div class="text-muted mt-2 font-sans d-flex align-items-center justify-content-between" style="font-size: 11px;">
+                <span>Utilities, rents & stocks</span>
+                <span class="trend-pill trend-up" style="background-color: rgba(239, 68, 68, 0.1); color: #ef4444;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg> +4.1%
+                </span>
+              </div>
             </div>
           </div>
 
           <div class="col-sm-6 col-lg-3">
-            <div class="metric-card">
-              <div class="metric-label mb-2">Net Cash Surplus</div>
-              <div class="fs-4 font-bold font-mono text-success text-emerald-600"><?= formatUGX($net_operating_profit) ?></div>
-              <div class="text-muted mt-1 font-sans font-xs">Available operational ledger capital</div>
+            <div class="metric-card metric-success">
+              <div class="d-flex align-items-center justify-content-between mb-2">
+                <div class="metric-label">Net Cash Surplus</div>
+                <div style="background-color: rgba(16, 185, 129, 0.08); padding: 8px; border-radius: 8px; color: var(--coral-emerald);">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                </div>
+              </div>
+              <div class="d-flex align-items-baseline gap-1">
+                <div class="fs-4 font-bold font-mono text-dark"><?= formatUGX($net_operating_profit) ?></div>
+              </div>
+              <div class="text-muted mt-2 font-sans d-flex align-items-center justify-content-between" style="font-size: 11px;">
+                <span>Available ledger capital</span>
+                <span class="trend-pill trend-up">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg> +21.9%
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -286,8 +413,34 @@ $net_operating_profit = $total_revenue - $total_expenses;
                       ?>
                         <tr>
                           <td>
-                            <div class="font-bold text-slate-800"><?= htmlspecialchars($ap['patient_name']) ?></div>
-                            <span class="text-muted font-mono" style="font-size: 10px;"><?= htmlspecialchars($ap['patient_phone']) ?></span>
+                            <div class="d-flex align-items-center gap-2.5">
+                              <?php 
+                                $hash = md5($ap['patient_name']);
+                                $colors = [
+                                  ['#3b82f6', '#93c5fd'], // Blue
+                                  ['#10b981', '#6ee7b7'], // Green
+                                  ['#f59e0b', '#fcd34d'], // Amber
+                                  ['#8b5cf6', '#c4b5fd'], // Violet
+                                  ['#ec4899', '#fbcfe8'], // Pink
+                                  ['#14b8a6', '#99f6e4']  // Teal
+                                ];
+                                $c_idx = hexdec(substr($hash, 0, 2)) % count($colors);
+                                $grad_start = $colors[$c_idx][0];
+                                $grad_end = $colors[$c_idx][1];
+                                $initials = strtoupper(substr(preg_replace('/[^A-Za-z0-9 ]/', '', $ap['patient_name']), 0, 1));
+                                if (strpos($ap['patient_name'], ' ') !== false) {
+                                  $parts = explode(' ', $ap['patient_name']);
+                                  $initials = strtoupper(substr(trim($parts[0]), 0, 1) . substr(trim($parts[1]), 0, 1));
+                                }
+                              ?>
+                              <div class="patient-circle-avatar" style="background: linear-gradient(135deg, <?= $grad_start ?>, <?= $grad_end ?>);">
+                                <?= $initials ?>
+                              </div>
+                              <div>
+                                <div class="font-bold text-slate-800"><?= htmlspecialchars($ap['patient_name']) ?></div>
+                                <span class="text-muted font-mono" style="font-size: 10px;"><?= htmlspecialchars($ap['patient_phone']) ?></span>
+                              </div>
+                            </div>
                           </td>
                           <td>
                             <div class="font-semibold text-slate-700"><?= htmlspecialchars($ap['service_name'] ?? 'Custom Dental Diagnostics') ?></div>
